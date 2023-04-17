@@ -17,11 +17,11 @@ function [newweights,zt] = AdaBoostUpdateWeights(inweights, classifier, localXda
 
 %get the weighting of the classifier
 %call AdaBoostError to get alpha and predict
-[err, alpha,predict] = AdaBoostError( <insert code here>)
+[err, alpha, predict] = AdaBoostError(inweights, classifier, localXdata, localGT);
 
 
 %calculate new weights
-newweights = <insert code here>
+newweights = inweights .* exp(-alpha * predict .* localGT);
 
 
 %normalize new weights

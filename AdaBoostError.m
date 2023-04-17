@@ -17,7 +17,7 @@ function [errorAmt, alpha,predict] = AdaBoostError(weights, classifier,localXdat
 
 %make a predition using the classifier on our data
 %predict = (2*(Xdata(:,feature) < T) -1)*polarity
-predict = <insert code here>
+predict = (2*(localXdata(:,classifier.feature) < classifier.thresh) - 1)*classifier.polarity
 
 
 %form a [0,1] vector mistakes, mistakes will have one entry for each
@@ -34,4 +34,4 @@ errsum = sum(wmistakes);
 errorAmt = errsum/sum(weights); 
 
 %alpha as per AdaBoost
-alpha = <insert code here>
+alpha = .5*log((1 - errorAmt) / errorAmt);
